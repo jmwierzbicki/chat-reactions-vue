@@ -14,7 +14,7 @@
     </div>
 </template>
 
-<script lang="ts">
+<script>
 import { defineComponent } from "vue";
 import Reaction from "@/components/Reaction.vue";
 
@@ -50,7 +50,6 @@ export default defineComponent({
     .reaction-container {
         display: flex;
         margin:5px;
-
     }
 
 </style>

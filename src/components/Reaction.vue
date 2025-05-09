@@ -1,7 +1,6 @@
 <template>
     <div
         class="reaction-item"
-        @click="$emit('reaction-clicked', true)"
     >
         <span>{{ icon }}</span>
         <span class="reaction-count"> {{ count }}</span>

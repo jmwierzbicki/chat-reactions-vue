@@ -35,7 +35,6 @@ export default {
 <style scoped>
   .message {
     display: flex;
-    //height: 50px;
     background-color: #f5f5f5;
     border-radius: 4px;
 
