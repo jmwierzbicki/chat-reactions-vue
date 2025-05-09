@@ -1,46 +1,70 @@
 <template>
     <div class="message">
-        <img :src="message.sender.profilePicture"/>
+        <img :src="message.sender.profilePicture">
         <div>
             <div class="message-meta">
                 <span class="name">{{ message.sender.name }}</span>
                 <span class="time">{{ message.time }}</span>
             </div>
             <span>{{ message.text }}</span>
+            <div class="reactions-space">
+                <Reactions-container
+                    :reactions="message.reactions"
+                    @on-add="message.reactions.push($event)"
+                />
+            </div>
         </div>
-
     </div>
 </template>
-
+ 
 <script>
+import ReactionsContainer from "@/components/ReactionsContainer.vue";
+
 export default {
-    name: "Message",
-    props: {
-        message: Object
-    },
+	name: "Message",
+	components: {
+		ReactionsContainer,
+	},
+	props: {
+		message: { type: Object, required: true },
+	},
+	mounted() {
+		console.log("message mounted");
+
+		console.log(this.message);
+	},
+	methods: {},
 };
 </script>
 
 <style scoped>
-.message {
+  .message {
     display: flex;
-    height: 50px;
-    background-color: #F5F5F5;
+    //height: 50px;
+    background-color: #f5f5f5;
     border-radius: 4px;
 
     transition: margin-right 2s;
-}
+      img {
+          height: 50px;
+          margin-right: 10px;
+      }
+  }
 
-.message-meta {
+  .message-meta {
     display: flex;
-    column-gap: 10px
-}
+    column-gap: 10px;
+  }
 
-.name {
+  .name {
     font-weight: bold;
-}
+  }
 
-.time {
+  .time {
     color: gray;
-}
+  }
+
+  .reactions-space {
+      text-align: left;
+  }
 </style>

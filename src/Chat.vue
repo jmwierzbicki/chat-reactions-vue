@@ -6,36 +6,42 @@
             :message="message"
             class="message"
         />
-    </div>
+        <div class="total-reactions">
+            Total Reactions: {{ totalReactions }}
+        </div>
+    </div> 
 </template>
-
+   
 <script>
 import Message from "./components/Message.vue";
 
 export default {
-    name: "Chat",
-    components: {
-        Message,
-    },
-    data: function () {
-        return {
-            messages: [{
-                id: "1",
-                text: "Hello, world!",
-                time: "11:45",
-                sender: {
-                    id: "2",
-                    name: "Ada",
-                    profilePicture: "https://randomuser.me/api/portraits/med/women/75.jpg",
-                },
-            }]
-        }
-    },
+	name: "Chat",
+	components: {
+		Message,
+	},
+	data: function () {
+		return {
+			messages: [],
+		};
+	},
+	computed: {
+		totalReactions: function () {
+			return this.messages.reduce(
+				(acc, message) => acc + message.reactions.length,
+				0,
+			);
+		},
+	},
+	mounted: async function () {
+		const data = await fetch("/api-response.json");
+		this.messages = await data.json();
+	},
 };
 </script>
 
 <style>
-#app {
+  #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -43,10 +49,12 @@ export default {
     color: #2c3e50;
 
     margin: 20px;
-}
+  }
 
-.message {
+  .message {
     margin-bottom: 20px;
-}
-
+  }
+  .total-reactions {
+      text-align: left;
+  }
 </style>
