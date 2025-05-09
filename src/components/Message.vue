@@ -28,11 +28,6 @@ export default {
 	props: {
 		message: { type: Object, required: true },
 	},
-	mounted() {
-		console.log("message mounted");
-
-		console.log(this.message);
-	},
 	methods: {},
 };
 </script>

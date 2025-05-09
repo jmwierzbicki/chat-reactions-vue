@@ -38,11 +38,6 @@ export default defineComponent({
 			return Array.from(reactionMap.values()).sort((a, b) => b.count - a.count);
 		},
 	},
-	data: function () {
-		return {
-			parsedReactions: [],
-		};
-	},
 	methods: {
 		addReaction: function (reaction) {
 			this.$emit("on-add", reaction);
